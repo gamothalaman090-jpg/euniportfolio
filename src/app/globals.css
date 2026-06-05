@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap");
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN SYSTEM — MIDNIGHT AUTHORITY
+   ============================================================ */
+:root {
+  /* Core Palette */
+  --color-void:       #050508;
+  --color-surface:    #0D0D12;
+  --color-elevated:   #141419;
+  --color-border:     rgba(255, 255, 255, 0.06);
+  --color-border-lg:  rgba(255, 255, 255, 0.12);
+
+  /* Accent Colours */
+  --color-teal:       #64FFDA;
+  --color-teal-dim:   rgba(100, 255, 218, 0.12);
+  --color-coral:      #F15A24;
+  --color-coral-dim:  rgba(241, 90, 36, 0.12);
+
+  /* Typography */
+  --color-text-primary:   #F0F0F5;
+  --color-text-secondary: #8A8A9A;
+  --color-text-muted:     #4A4A5A;
+
+  /* Fonts */
+  --font-sans:    "Inter", system-ui, sans-serif;
+  --font-mono:    "Fira Code", "Courier New", monospace;
+  --font-display: "Playfair Display", Georgia, serif;
+
+  /* Spacing Scale */
+  --space-section: clamp(6rem, 12vw, 10rem);
+}
+
+@theme inline {
+  --color-background: var(--color-void);
+  --color-foreground: var(--color-text-primary);
+  --font-sans:        var(--font-sans);
+  --font-mono:        var(--font-mono);
+}
+
+/* ============================================================
+   BASE RESET & BODY
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-void);
+  color: var(--color-text-primary);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-void);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none !important;
+}
+
+/* Ensure no native cursor on interactive elements */
+a, button, [role="button"], input, textarea, select {
+  cursor: none !important;
+}
+
+/* ── Logo Animations */
+@keyframes drawHex {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Restore native cursor on touch/mobile where custom cursor is hidden */
+@media (hover: none) {
+  body { cursor: auto; }
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+::selection {
+  background-color: var(--color-teal-dim);
+  color: var(--color-teal);
+}
+
+/* ============================================================
+   NOISE TEXTURE OVERLAY
+   ============================================================ */
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+/* ============================================================
+   GLASSMORPHISM CARDS
+   ============================================================ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.glass-card:hover {
+  border-color: var(--color-border-lg);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================================
+   GRADIENT UTILITIES
+   ============================================================ */
+.gradient-teal {
+  background: linear-gradient(135deg, var(--color-teal), #00C4A7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-coral {
+  background: linear-gradient(135deg, var(--color-coral), #FF8C42);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effects */
+.glow-teal {
+  box-shadow: 0 0 40px -10px rgba(100, 255, 218, 0.4);
+}
+
+.glow-coral {
+  box-shadow: 0 0 40px -10px rgba(241, 90, 36, 0.4);
+}
+
+/* ============================================================
+   GSAP ANIMATION HELPERS — initial hidden states
+   ============================================================ */
+.gsap-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.gsap-reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.gsap-reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.gsap-scale-in {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+/* ============================================================
+   CURSOR CUSTOM
+   ============================================================ */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--color-teal);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(100, 255, 218, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, border-color 0.2s;
+}
+
+/* Line drawing animation for skills */
+@keyframes draw-line {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* Counter pulse */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
