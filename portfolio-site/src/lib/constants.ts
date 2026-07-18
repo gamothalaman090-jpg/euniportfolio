@@ -36,18 +36,6 @@ export const PROJECTS = [
     live: "https://hr-attendance-leave-management.vercel.app/",
     tech: ["React", "JavaScript", "Tailwind CSS", "Vite", "Node.js", "Express.js", "MongoDB"],
     role: "Full Stack Developer"
-  },
-  {
-    title: "Verifact",
-    category: "AI FACT-CHECKING ENGINE",
-    image: "/projects/verifact.png",
-    span: "lg:col-span-3 lg:row-span-2",
-    cursorText: "View Project",
-    description: "An AI-powered truth engine that verifies articles and claims against real-time fact-check databases and Wikipedia using Google Gemini AI.",
-    github: "https://github.com/gamothalaman090-jpg/verifact-ph",
-    live: "https://verifact-ph.vercel.app/",
-    tech: ["React", "TypeScript", "Tailwind CSS", "Gemini AI", "Google Fact Check API"],
-    role: "Full Stack Developer"
   }
 ] as const;
 
